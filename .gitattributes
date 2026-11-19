@@ -1,0 +1,3 @@
+# Preserve benchmark data and imported algorithm sources byte-for-byte.
+company_n100_seed20260908/*.csv -text -whitespace
+fusedjoin/*.py -text whitespace=cr-at-eol

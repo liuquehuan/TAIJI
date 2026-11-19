@@ -1,5 +1,6 @@
 from mcp.server import FastMCP # type: ignore
 import base64
+import os
 from openai import OpenAI
 import time
 
@@ -28,20 +29,13 @@ async def analyze_image(image_paths: list[str]) -> list[str]:
     for image_path in image_paths:
         image_path = "/Users/liuquehuan/Downloads/research/Agent/DBAgent/" + image_path
         base64_image = encode_image(image_path)
-        # client = OpenAI(
-        #     api_key="83db886a9ca34175a97c31670216ef84.LHQrb8FovIxtIVLz",
-        #     base_url="https://open.bigmodel.cn/api/paas/v4/"
-        # )
-        client = OpenAI(api_key="None", base_url="http://10.77.110.188:30000/v1/")
-        # client = OpenAI(
-        #     api_key="sk-ydWjHrxTcGAshMZRMkTdDWZ5MjRkuAXKGB40JKIMEPgbFqxl",
-        #     base_url="https://api.ifopen.ai/v1/"
-        # )
+        client = OpenAI(
+            api_key=os.environ["OPENAI_API_KEY"],
+            base_url=os.environ["OPENAI_BASE_URL"],
+        )
 
         response = client.chat.completions.create(
-            # model="glm-4v-plus-0111",
-            model="Qwen/Qwen2.5-VL-7B-Instruct",
-            # model="gpt-4.1",
+            model=os.environ["OPENAI_MODEL"],
             messages=[
                 {
                     "role": "user",

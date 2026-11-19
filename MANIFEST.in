@@ -1,0 +1,5 @@
+prune examples
+prune tests
+prune fusedjoin
+prune company_n100_seed20260908
+global-exclude .env *.pyc .DS_Store

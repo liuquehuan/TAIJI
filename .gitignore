@@ -1,2 +1,16 @@
 craigslist/
 .DS_Store
+.env
+**/.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.model-cache/
+.taiji-cache/
+outputs/
+/DEMO_DESIGN.md
+/VALIDATION.md
