@@ -42,7 +42,7 @@ def main() -> None:
         statistics, unresolved pairs, status, matches_csv and result_json paths.
         stats.total_pairs is the full Cartesian search space; stats.candidates is
         the smaller number of selected candidates. They are distinct counts.
-        verification_pairs counts automated LLM checks, NOT pending human review;
+        verification_pairs counts automated LLM checks;
         unresolved_pairs counts decisions that could not be completed.
         Model and algorithm parameters are configured by the operator, not tool arguments.
         """

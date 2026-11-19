@@ -231,8 +231,7 @@ class FusedJoinAdapter:
             f"selected candidates (candidates): {stats['candidates']}; "
             f"automatic accepts: {stats['auto_accepted']}; threshold rejections: {stats['threshold_rejected']}; "
             f"automated LLM verification pairs: {stats['verification_pairs']}; "
-            f"matches: {len(matches)}; unresolved pairs: {len(unresolved)}. "
-            "Verification counts do not request human review."
+            f"matches: {len(matches)}; unresolved pairs: {len(unresolved)}."
         )
         result = {"status": status, "summary": summary,
                   "matches": matches, "stats": stats, "unresolved": unresolved,

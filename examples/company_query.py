@@ -28,8 +28,8 @@ async def main() -> taiji.QueryResult:
         })
         await client.add_mcp("fusedjoin", join_config)
         result = await client.query(
-            "请找出 company 左右表中属于同一家现实公司的记录"
-            "并报告匹配数量、未决数量和结果文件路径。"
+            "请找出 company 左右表中属于同一家现实公司的记录。"
+            "回答仅包含匹配数量、未决数量、匹配结果文件路径和完整结果文件路径四项。"
         )
 
     print(result.answer)

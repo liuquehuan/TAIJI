@@ -95,7 +95,7 @@ def main() -> None:
     parser.add_argument("--data-dir", type=Path, default=ROOT / "company_n100_seed20260908")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs/company")
     parser.add_argument("--env-file", type=Path, default=ROOT / ".env")
-    parser.add_argument("--query", default="使用 fusedjoin 匹配 company 数据源中已注册的 company_left 和 company_right 两张公司表，找出两张表中属于同一家现实公司的记录。请报告匹配数量、未决数量和结果文件路径，不展示缓存统计或耗时说明。")
+    parser.add_argument("--query", default="使用 fusedjoin 匹配 company 数据源中已注册的 company_left 和 company_right 两张公司表，找出两张表中属于同一家现实公司的记录。回答仅包含匹配数量、未决数量、匹配结果文件路径和完整结果文件路径四项。")
     parser.add_argument("--audit-rows", type=int, default=20)
     parser.add_argument("--direct", action="store_true", help="Call tools without the planner model")
     parser.add_argument("--compare", action="store_true", help="Compare direct and natural-language execution")
