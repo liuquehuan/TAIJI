@@ -33,15 +33,6 @@ python -m examples.company_query
 
 The demo registers two company tables and a FusedJoin operator through MCP, then finds records referring to the same real-world company. See [company_query.py](examples/company_query.py) for the Python SDK usage. Results are saved under `outputs/company/`.
 
-### Performance Results
-
-Single-run results on Company (100 records per table) using `gpt-4.1`. Latency and token usage cover the matching stage.
-
-| Method | Precision | Recall | F1 | Latency | Token Usage |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| LLM (batched) | 96.55% | 93.33% | 0.9492 | 62.81 s | 626,213 |
-| FusedJoin-assisted matching | 98.04% | 83.33% | 0.9009 | 130.95 s | 172,680 |
-
 ## 2. Terminal Interface
 
 The original terminal interface supports interactive queries over PostgreSQL and an image-analysis MCP service.
