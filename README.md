@@ -2,9 +2,47 @@
 
 TAIJI connects large language models with data sources and analytical operators through the Model Context Protocol (MCP), enabling natural-language analytics across structured, semi-structured, and unstructured data. See our [paper](https://arxiv.org/abs/2505.11270) for the architecture.
 
-TAIJI provides two ways to run queries: an interactive terminal interface and a Python SDK.
+TAIJI provides two ways to run queries: a Python SDK and an interactive terminal interface.
 
-## 1. Terminal Interface
+## 1. Python SDK
+
+The SDK lets you configure a model, connect MCP data sources and operators, and submit natural-language queries from Python.
+
+### Install
+
+Requires Python 3.10+. Install from the repository root:
+
+```bash
+python -m pip install .
+```
+
+### Run the Company Matching Demo
+
+Install the demo dependencies and create a local configuration:
+
+```bash
+python -m pip install -r examples/company_demo/requirements.txt
+cp .env.example .env
+```
+
+Set `OPENAI_MODEL`, `OPENAI_BASE_URL`, and `OPENAI_API_KEY` in `.env`, then run:
+
+```bash
+python -m examples.company_query
+```
+
+The demo registers two company tables and a FusedJoin operator through MCP, then finds records referring to the same real-world company. See [company_query.py](examples/company_query.py) for the Python SDK usage. Results are saved under `outputs/company/`.
+
+### Performance Results
+
+Single-run results on Company (100 records per table) using `gpt-4.1`. Latency and token usage cover the matching stage.
+
+| Method | Precision | Recall | F1 | Latency | Token Usage |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| LLM (batched) | 96.55% | 93.33% | 0.9492 | 62.81 s | 626,213 |
+| FusedJoin-assisted matching | 98.04% | 83.33% | 0.9009 | 130.95 s | 172,680 |
+
+## 2. Terminal Interface
 
 The original terminal interface supports interactive queries over PostgreSQL and an image-analysis MCP service.
 
@@ -59,41 +97,3 @@ python dbagent.py
 ```
 
 Enter a query such as: "Find the lowest-priced blue wooden chair."
-
-## 2. Python SDK
-
-The SDK lets you configure a model, connect MCP data sources and operators, and submit natural-language queries from Python.
-
-### Install
-
-Requires Python 3.10+. Install from the repository root:
-
-```bash
-python -m pip install .
-```
-
-### Run the Company Matching Demo
-
-Install the demo dependencies and create a local configuration:
-
-```bash
-python -m pip install -r examples/company_demo/requirements.txt
-cp .env.example .env
-```
-
-Set `OPENAI_MODEL`, `OPENAI_BASE_URL`, and `OPENAI_API_KEY` in `.env`, then run:
-
-```bash
-python -m examples.company_query
-```
-
-The demo registers two company tables and a FusedJoin operator through MCP, then finds records referring to the same real-world company. See [company_query.py](examples/company_query.py) for the Python SDK usage. Results are saved under `outputs/company/`.
-
-### Performance Results
-
-Single-run results on Company (100 records per table) using `gpt-4.1`. Latency and token usage cover the matching stage.
-
-| Method | Precision | Recall | F1 | Latency | Token Usage |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| LLM (batched) | 96.55% | 93.33% | 0.9492 | 62.81 s | 626,213 |
-| FusedJoin-assisted matching | 98.04% | 83.33% | 0.9009 | 130.95 s | 172,680 |
